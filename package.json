@@ -14,12 +14,48 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
+		"commands":[
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "gitflow.refresh",
+				"title": "Refresh",
+				"category": "Git Flow",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
 			}
-		]
+		],
+		"menus": {
+			"view/title": [{
+				"command": "gitflow.refresh",
+				"when": "view == gitflowMainBranchesExplorer",
+				"group": "navigation"
+			}]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "gitflow-explorer",
+					"title": "Git Flow",
+					"icon": "media/code-merge-light.svg"
+				}
+			]
+		},
+		"views": {
+			"gitflow-explorer": [{
+				"id": "gitflowMainBranchesExplorer",
+				"name": "Git Flow"
+			},{
+				"id":"gitflowFeatureBranchesExplorer",
+				"name": "Features"
+			},{
+				"id":"gitflowHotfixesBranchesExplorer",
+				"name": "Hotfixes"
+			},{
+				"id":"gitflowReleasesBranchesExplorer",
+				"name": "Releases"
+			}]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
