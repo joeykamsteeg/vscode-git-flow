@@ -5,11 +5,15 @@ export declare type GitFlowPrefix = "feature" | "hotfix" | "release" | "support"
 
 interface IGitFlowConfig {
     branches: {
-        master: string;
-        develop: string;
+        master?: string;
+        develop?: string;
     },
     prefixes: {
-
+        feature?: string;
+        release?: string;
+        hotfix?: string;
+        support?: string;
+        versiontag?: string;
     }
 }
 
@@ -22,12 +26,16 @@ class GitService {
     }
 
     private exec( command: string ) : string {
-        const output = execSync( command, {
-            cwd: this._cwd
-        });
+        try { 
+            const output = execSync( command, {
+                cwd: this._cwd
+            });
 
-        if( output ) {
-            return output.toString().trim();
+            if( output ) {
+                return output.toString().trim();
+            }
+        } catch( ex ) {
+            return "";
         }
 
         return "";
@@ -38,17 +46,18 @@ class GitService {
     }
 
     public get flowConfig(): IGitFlowConfig {
+
         return {
             "branches": {
-                "master": this.getConfig("gitflow.branch.master"),
-                "develop": this.getConfig("gitflow.branch.develop")
+                "master": this.getConfig("gitflow.branch.master") || undefined,
+                "develop": this.getConfig("gitflow.branch.develop") || undefined
             },
             "prefixes": {
-                "feature": this.getConfig("gitflow.prefix.feature"),
-                "release": this.getConfig("gitflow.prefix.release"),
-                "hotfix": this.getConfig("gitflow.prefix.hotfix"),
-                "support": this.getConfig("gitflow.prefix.support"),
-                "versiontag": this.getConfig("gitflow.prefix.versiontag")
+                "feature": this.getConfig("gitflow.prefix.feature") || undefined,
+                "release": this.getConfig("gitflow.prefix.release") || undefined,
+                "hotfix": this.getConfig("gitflow.prefix.hotfix") || undefined,
+                "support": this.getConfig("gitflow.prefix.support") || undefined,
+                "versiontag": this.getConfig("gitflow.prefix.versiontag") || undefined
             }
         };
     }

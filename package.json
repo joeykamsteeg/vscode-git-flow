@@ -14,7 +14,22 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "Git Flow",
+			"properties": {
+				"gitflow.initialized": {
+					"type": "boolean",
+					"default": false,
+					"scope": "resource"
+				}
+			}
+		},
 		"commands":[
+			{
+				"command": "gitflow.init",
+				"title": "Init",
+				"category": "Git Flow"
+			},
 			{
 				"command": "gitflow.refresh",
 				"title": "Refresh",
@@ -53,6 +68,10 @@
 				{
 					"command": "gitflow.branch.delete",
 					"when": "never"
+				},
+				{
+					"command": "gitflow.init",
+					"when": "never"
 				}
 			],
 			"view/item/context": [{
@@ -84,10 +103,12 @@
 		"views": {
 			"gitflow-explorer": [{
 				"id": "gitflow.views.main",
-				"name": "Git Flow"
+				"name": "Git Flow",
+				"when": "config.gitflow.initialized == true"
 			}, {
 				"id": "gitflow.views.feature",
-				"name": "Features"
+				"name": "Features",
+				"when": "config.gitflow.initialized == true"
 			}]
 		}
 	},
