@@ -84,6 +84,7 @@
 				"group": "navigation"
 			},{
 				"command": "gitflow.finish",
+				"when": "view == gitflow.views.feature",
 				"group": "1"
 			},{
 				"command": "gitflow.branch.delete",
