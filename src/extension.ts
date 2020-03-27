@@ -29,6 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}).then( ( branch ) => {
 			if( branch ) {
 				GitService.flowStart("feature", branch );
+				vscode.commands.executeCommand("gitflow.refresh");
 			}
 		});
 	});
