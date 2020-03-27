@@ -1,0 +1,24 @@
+name: Publish to Visual Studio Code Marketplace
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout
+       uses: actions/checkout@v1
+     - name: npm install
+       run: |
+         npm install
+     - name: Install VSCE
+       run: |
+         sudo npm install -g vsce
+     - name: Publish
+       run: |
+         vsce publish -p $VSCE_TOKEN
+       env:
+         VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
