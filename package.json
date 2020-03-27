@@ -4,6 +4,7 @@
 	"description": "Git Flow UI interface for Visual Studio Code",
 	"version": "0.1.0",
 	"preview": true,
+	"publisher": "PsykoSoldi3r",
 	"icon": "media/git-flow-icon.png",
 	"engines": {
 		"vscode": "^1.43.0"
