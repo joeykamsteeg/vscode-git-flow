@@ -96,7 +96,7 @@
 				{
 					"id": "gitflow-explorer",
 					"title": "Git Flow",
-					"icon": "media/code-merge-light.svg"
+					"icon": "media/git-merge.svg"
 				}
 			]
 		},
