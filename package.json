@@ -28,7 +28,6 @@
 		"menus": {
 			"view/title": [{
 				"command": "gitflow.refresh",
-				"when": "view == gitflow.views.main",
 				"group": "navigation"
 			}]
 		},	
@@ -45,6 +44,9 @@
 			"gitflow-explorer": [{
 				"id": "gitflow.views.main",
 				"name": "Git Flow"
+			}, {
+				"id": "gitflow.views.feature",
+				"name": "Features"
 			}]
 		}
 	},
