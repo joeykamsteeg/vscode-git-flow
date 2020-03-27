@@ -13,7 +13,7 @@ export class BranchTreeViewProvider implements vscode.TreeDataProvider<Branch> {
     private _onDidChangeTreeData: vscode.EventEmitter<Branch | undefined> = new vscode.EventEmitter<Branch | undefined>();
     private _prefix: GitFlowPrefix;
 
-    public readonly onDidChangeTreeData?: vscode.Event<Branch | null | undefined> | undefined;
+    readonly onDidChangeTreeData: vscode.Event<Branch | undefined> = this._onDidChangeTreeData.event;
 
     constructor( prefix: GitFlowPrefix ) {
         this._prefix = prefix;

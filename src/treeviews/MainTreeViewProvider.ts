@@ -8,8 +8,7 @@ import Branch from "./BranchTreeItem";
 export class MainTreeViewProvider implements vscode.TreeDataProvider<Branch> {
 
     private _onDidChangeTreeData: vscode.EventEmitter<Branch | undefined> = new vscode.EventEmitter<Branch | undefined>();
-
-    public readonly onDidChangeTreeData?: vscode.Event<Branch | null | undefined> | undefined;
+    readonly onDidChangeTreeData: vscode.Event<Branch | undefined> = this._onDidChangeTreeData.event;
 
     getTreeItem(element: Branch): vscode.TreeItem | Thenable<vscode.TreeItem> {
         return element;
@@ -34,8 +33,6 @@ export class MainTreeViewProvider implements vscode.TreeDataProvider<Branch> {
     }
 
     public refresh(): void {
-        console.log("Refresh");
         this._onDidChangeTreeData.fire();
-        this.getChildren();
     }
 }

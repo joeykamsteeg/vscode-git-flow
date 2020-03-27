@@ -66,6 +66,10 @@ class GitService {
     public get activeBranch(): string {
         return this.exec("git branch | sed -n '/\* /s///p'");
     }
+
+    public checkout( branch: string ): string {
+        return this.exec(`git checkout ${branch}`);
+    }
 }
 
 const service = new GitService( vscode.workspace.rootPath || "" );

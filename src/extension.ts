@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import { MainTreeViewProvider } from './treeviews/MainTreeViewProvider';
 import { BranchTreeViewProvider } from './treeviews/BranchTreeViewProvider';
+import GitService from "./services/GitService";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -14,7 +15,16 @@ export function activate(context: vscode.ExtensionContext) {
 	const featureTreeViewProvider = new BranchTreeViewProvider("feature");
 	vscode.window.registerTreeDataProvider("gitflow.views.feature", featureTreeViewProvider);
 
-	vscode.commands.registerCommand("gitflow.refresh", () => mainTreeViewProvider.refresh() );
+	vscode.commands.registerCommand("gitflow.refresh", () => { 
+		mainTreeViewProvider.refresh();
+		featureTreeViewProvider.refresh();
+	});
+	vscode.commands.registerCommand("gitflow.checkout", ( branchItem ) => {
+		if( branchItem.active === false ) {
+			GitService.checkout( branchItem.label );
+			return vscode.commands.executeCommand("gitflow.refresh");
+		}
+	});
 }
 
 // this method is called when your extension is deactivated

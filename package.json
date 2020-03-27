@@ -23,9 +23,18 @@
 					"light": "resources/light/refresh.svg",
 					"dark": "resources/dark/refresh.svg"
 				}
+			},
+			{
+				"command": "gitflow.checkout",
+				"title": "Checkout",
+				"category": "Git Flow"
 			}
 		],
 		"menus": {
+			"view/item/context": [{
+				"command": "gitflow.checkout",
+				"group": "navigation"
+			}],
 			"view/title": [{
 				"command": "gitflow.refresh",
 				"group": "navigation"
