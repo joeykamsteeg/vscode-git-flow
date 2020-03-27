@@ -17,7 +17,7 @@ export default class Branch extends vscode.TreeItem {
         this._branch = branch;
         this._prefix = prefix;
 
-        this.label = this.isRemote ? this._branch.replace(`remotes/origin/${this._prefix}/`, "") : this._branch.replace(`${this._prefix}/`, "");
+        this.label = ( this.isRemote ? this._branch.replace(`remotes/origin/${this._prefix}/`, "") : this._branch.replace(`${this._prefix}/`, "") );
     }
 
     public get branch(): string {
@@ -33,7 +33,7 @@ export default class Branch extends vscode.TreeItem {
     }
 
     public get tooltip(): string {
-        return this._branch;
+        return `${this._branch} (${ this.isRemote === true ? "remote" : "local"})`;
     }
 
     public get description(): string {
