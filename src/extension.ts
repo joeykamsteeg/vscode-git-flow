@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 			return vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});
-	vscode.commands.registerCommand("gitflow.feature.start", () => {
+	vscode.commands.registerCommand("gitflow.start", () => {
 		vscode.window.showInputBox({
 			placeHolder: "Enter a name to create feature branch"
 		}).then( ( branch ) => {
@@ -38,6 +38,16 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.commands.executeCommand("gitflow.refresh");
 			}
 		});
+	});
+
+	vscode.commands.registerCommand("gitflow.finish", ( item ) => {
+		if( item instanceof BranchTreeItem && item.prefix === "feature" ) {
+			GitService.flowFinish( item.prefix, item.branch );
+			GitService.checkout( GitService.flowConfig.branches.develop! );
+			GitService.delete( item.branch );
+
+			vscode.commands.executeCommand("gitflow.refresh");
+		}
 	});
 
 	vscode.commands.registerCommand("gitflow.branch.delete", ( item ) => {

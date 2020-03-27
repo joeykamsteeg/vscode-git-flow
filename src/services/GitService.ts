@@ -86,6 +86,10 @@ class GitService {
         return this.exec(`git flow ${prefix} start ${branch}`);
     }
 
+    public flowFinish( prefix: GitFlowPrefix, branch: string ) {
+        return this.exec(`git flow ${prefix} finish ${branch}`);
+    }
+
     public delete( branch: string ) {
         return this.exec(`git branch -d ${branch}`);
     }

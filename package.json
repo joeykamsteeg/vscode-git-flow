@@ -14,16 +14,6 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"configuration": {
-			"title": "Git Flow",
-			"properties": {
-				"gitflow.initialized": {
-					"type": "boolean",
-					"default": false,
-					"scope": "resource"
-				}
-			}
-		},
 		"commands":[
 			{
 				"command": "gitflow.init",
@@ -45,13 +35,18 @@
 				"category": "Git Flow"
 			},
 			{
-				"command": "gitflow.feature.start",
-				"title": "Feature Start",
+				"command": "gitflow.start",
+				"title": "Start",
 				"category": "Git Flow",
 				"icon": {
 					"light": "resources/light/add.svg",
 					"dark": "resources/dark/add.svg"
 				}
+			},
+			{
+				"command": "gitflow.finish",
+				"title": "Finish",
+				"category": "Git Flow"
 			},
 			{
 				"command": "gitflow.branch.delete",
@@ -70,6 +65,10 @@
 					"when": "never"
 				},
 				{
+					"command": "gitflow.finish",
+					"when": "never"
+				},
+				{
 					"command": "gitflow.init",
 					"when": "never"
 				}
@@ -78,12 +77,15 @@
 				"command": "gitflow.checkout",
 				"group": "navigation"
 			},{
+				"command": "gitflow.finish",
+				"group": "1"
+			},{
 				"command": "gitflow.branch.delete",
 				"when": "view == gitflow.views.feature",
 				"group": "7_modification"
 			}],
 			"view/title": [{
-				"command": "gitflow.feature.start",
+				"command": "gitflow.start",
 				"when": "view == gitflow.views.feature",
 				"group": "navigation"
 			},{
