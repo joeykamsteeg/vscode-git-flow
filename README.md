@@ -8,34 +8,27 @@ This extension is still work in progress and not all features are covered and st
 
 `vscode-git-flow` is a UI tool designed for Visual Studio Code that will easily let the user manage their git repository that are initialized with `git flow`
 
-* UI Overview of your master/develop branch
-* Start/Finish Feature Branches
+#### General
+* Overview of master/develop branch
+
+#### Feature Branches
+
+* Checkout (local, remote)
+* Start
+* Finish
 
 ## Requirements
 
 Git repository with git flow already initialized is required.
 
-<!-- ## Extension Settings
+## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* `gitflow.views.feature.showRemoteBranches`: display remote branches in feature branch list
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension. -->
+* Finished a feature will not merge the feature branch into the develop branch
 
 ## Release Notes
 
-### 0.1.1
-
-- Removed finish action on master and develop branch menu
-
-### 0.1.0
-
-- Initial release of `vscode-git-flow`
+See [CHANGELOG.MD](https://github.com/PsykoSoldi3r/vscode-git-flow/blob/develop/CHANGELOG.md) for the latest release notes.
