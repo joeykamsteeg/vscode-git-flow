@@ -37,11 +37,20 @@
 					"light": "resources/light/add.svg",
 					"dark": "resources/dark/add.svg"
 				}
+			},
+			{
+				"command": "gitflow.branch.delete",
+				"title": "Delete Branch",
+				"category": "Git Flow"
 			}
 		],
 		"menus": {
 			"view/item/context": [{
 				"command": "gitflow.checkout",
+				"group": "navigation"
+			},{
+				"command": "gitflow.branch.delete",
+				"when": "view == gitflow.views.feature",
 				"group": "navigation"
 			}],
 			"view/title": [{

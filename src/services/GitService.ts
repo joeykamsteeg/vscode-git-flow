@@ -76,6 +76,10 @@ class GitService {
     public flowStart( prefix: GitFlowPrefix, branch: string ) {
         return this.exec(`git flow ${prefix} start ${branch}`);
     }
+
+    public delete( branch: string ) {
+        return this.exec(`git branch -d ${branch}`);
+    }
 }
 
 const service = new GitService( vscode.workspace.rootPath || "" );

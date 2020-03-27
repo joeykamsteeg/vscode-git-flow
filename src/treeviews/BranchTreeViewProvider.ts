@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
-import { GitExtension } from "../types/git";
 import { exec, execSync } from "child_process";
 import GitService, { GitFlowPrefix } from "../services/GitService";
 import Branch from "./BranchTreeItem";

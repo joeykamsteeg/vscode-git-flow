@@ -33,6 +33,13 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		});
 	});
+
+	vscode.commands.registerCommand("gitflow.branch.delete", ( item ) => {
+		if( item && item.label && item.active === false ) {
+			GitService.delete( item.label );
+			vscode.commands.executeCommand("gitflow.refresh");
+		}
+	});
 }
 
 // this method is called when your extension is deactivated
