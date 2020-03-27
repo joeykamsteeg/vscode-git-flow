@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Display error when git command execution has failed
+- Visualized the releases branches and able to checkout, finish and delete
 
 ## v0.1.1
 - Removed finish action on master and develop branch menu
