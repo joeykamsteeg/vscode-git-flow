@@ -21,7 +21,14 @@ export class BranchTreeViewProvider implements vscode.TreeDataProvider<Branch> {
     }
     getChildren(element?: Branch | undefined): vscode.ProviderResult<Branch[]> {
         const activeBranch = GitService.activeBranch;
-        const branches = GitService.branches.filter( ( branch ) => ( branch.startsWith( `${this._prefix}/` ) || branch.startsWith(`remotes/origin/${this._prefix}/`) ) );
+        const branches = GitService.branches.filter( ( branch ) => {
+            const filter = vscode.workspace.getConfiguration("gitflow").get("views.feature.hideRemoteBranches");
+            if( filter !== true ) {
+                return ( branch.startsWith( `${this._prefix}/` ) || branch.startsWith(`remotes/origin/${this._prefix}/`) );
+            }
+            
+            return branch.startsWith( `${this._prefix}/` );
+        });
 
         return Promise.resolve( branches.map( ( branch ) => { 
             const isRemote = branch.startsWith(`remotes/origin/${this._prefix}/`);

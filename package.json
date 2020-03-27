@@ -20,6 +20,18 @@
 	},
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "Git Flow",
+			"properties": {
+				"gitflow.views.feature.hideRemoteBranches": {
+					"scope": "application",
+					"title": "Display Remote Branches",
+					"description": "Enable/disable hide remote branches",
+					"type": "boolean",
+					"default": false
+				}
+			}
+		},
 		"commands":[
 			{
 				"command": "gitflow.init",
@@ -58,6 +70,15 @@
 				"command": "gitflow.branch.delete",
 				"title": "Delete",
 				"category": "Git Flow"
+			},
+			{
+				"command": "gitflow.views.feature.filterRemotes",
+				"title": "Filter Remotes Branches",
+				"category": "Git Flow",
+				"icon": {
+					"light": "resources/light/list-filter.svg",
+					"dark": "resources/dark/list-filter.svg"
+				}
 			}
 		],
 		"menus": {
@@ -77,6 +98,10 @@
 				{
 					"command": "gitflow.init",
 					"when": "never"
+				},
+				{
+					"command": "gitflow.views.feature.filterRemotes",
+					"when": "never"
 				}
 			],
 			"view/item/context": [{
@@ -94,10 +119,14 @@
 			"view/title": [{
 				"command": "gitflow.start",
 				"when": "view == gitflow.views.feature",
-				"group": "navigation"
+				"group": "navigation@3"
+			},{
+				"command": "gitflow.views.feature.filterRemotes",
+				"when": "view == gitflow.views.feature",
+				"group": "navigation@1"
 			},{
 				"command": "gitflow.refresh",
-				"group": "navigation"
+				"group": "navigation@2"
 			}]
 		},	
 		"viewsContainers": {
