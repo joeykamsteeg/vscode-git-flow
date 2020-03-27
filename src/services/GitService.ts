@@ -89,6 +89,28 @@ class GitService {
     public delete( branch: string ) {
         return this.exec(`git branch -d ${branch}`);
     }
+
+    public get isInitialized(): boolean {
+        const { master, develop } = this.flowConfig.branches;
+		const { feature, hotfix, release, support } = this.flowConfig.prefixes;
+
+		if( master && develop && feature && hotfix && release && support ) {
+			const configuration = vscode.workspace.getConfiguration("gitflow");
+			configuration.update("initialized", true );
+		} else {
+			const configuration = vscode.workspace.getConfiguration("gitflow");
+			configuration.update("initialized", false );
+        }
+        
+        return ( 
+            master !== undefined && 
+            develop !== undefined && 
+            feature !== undefined && 
+            hotfix !== undefined && 
+            release !== undefined && 
+            support !== undefined
+        );
+    }
 }
 
 const service = new GitService( vscode.workspace.rootPath || "" );

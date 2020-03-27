@@ -16,16 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider("gitflow.views.feature", featureTreeViewProvider);
 
 	vscode.commands.registerCommand("gitflow.init", () => {
-		const { master, develop } = GitService.flowConfig.branches;
-		const { feature, hotfix, release, support, versiontag } = GitService.flowConfig.prefixes;
-
-		if( master && develop && feature && hotfix && release && support ) {
-			const configuration = vscode.workspace.getConfiguration("gitflow");
-			configuration.update("initialized", true );
-		} else {
-			const configuration = vscode.workspace.getConfiguration("gitflow");
-			configuration.update("initialized", false );
-		}
+		console.log("Init");
 	});
 
 	vscode.commands.registerCommand("gitflow.refresh", () => { 
@@ -56,7 +47,9 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	vscode.commands.executeCommand("gitflow.init");
+	// Set the initialized state when application gets launched
+	const configuration = vscode.workspace.getConfiguration("gitflow");
+	configuration.update("initialized", GitService.isInitialized );
 }
 
 // this method is called when your extension is deactivated
