@@ -32,10 +32,4 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
-### 0.1.1
-
-- Removed finish action on master and develop branch menu
-
-### 0.1.0
-
-- Initial release of `vscode-git-flow`
+Check the [CHANGELOG.MD](https://github.com/PsykoSoldi3r/vscode-git-flow/blob/master/CHANGELOG.md) file for the latest release notes
