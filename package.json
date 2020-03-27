@@ -57,11 +57,11 @@
 			],
 			"view/item/context": [{
 				"command": "gitflow.checkout",
-				"group": "navigation@1"
+				"group": "navigation"
 			},{
 				"command": "gitflow.branch.delete",
 				"when": "view == gitflow.views.feature",
-				"group": "navigation@3"
+				"group": "7_modification"
 			}],
 			"view/title": [{
 				"command": "gitflow.feature.start",
