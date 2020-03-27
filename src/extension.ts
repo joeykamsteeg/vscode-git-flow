@@ -3,7 +3,9 @@
 import * as vscode from 'vscode';
 import { MainTreeViewProvider } from './treeviews/MainTreeViewProvider';
 import { BranchTreeViewProvider } from './treeviews/BranchTreeViewProvider';
+import BranchTreeItem from "./treeviews/BranchTreeItem";
 import GitService from "./services/GitService";
+import Branch from './treeviews/BranchTreeItem';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -17,15 +19,15 @@ export function activate(context: vscode.ExtensionContext) {
 		mainTreeViewProvider.refresh();
 		featureTreeViewProvider.refresh();
 	});
-	vscode.commands.registerCommand("gitflow.checkout", ( branchItem ) => {
-		if( branchItem.active === false ) {
-			GitService.checkout( branchItem.label );
+	vscode.commands.registerCommand("gitflow.checkout", ( item ) => {
+		if( item instanceof BranchTreeItem ) {
+			GitService.checkout( item.branch );
 			return vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});
-	vscode.commands.registerCommand("gitflow.start.feature", () => {
+	vscode.commands.registerCommand("gitflow.feature.start", () => {
 		vscode.window.showInputBox({
-			placeHolder: "Enter Feature Name",
+			placeHolder: "Enter a name to create feature branch"
 		}).then( ( branch ) => {
 			if( branch ) {
 				GitService.flowStart("feature", branch );
@@ -35,9 +37,9 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	vscode.commands.registerCommand("gitflow.branch.delete", ( item ) => {
-		if( item && item.label && item.active === false ) {
-			GitService.delete( item.label );
-			vscode.commands.executeCommand("gitflow.refresh");
+		if( item instanceof BranchTreeItem ) {
+			GitService.delete( item.branch );
+			return vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});
 }

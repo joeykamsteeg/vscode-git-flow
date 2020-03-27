@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { execSync, exec } from "child_process";
 
-export declare type GitFlowPrefix = "feature" | "hotfix" | "release" | "support";
+export declare type GitFlowPrefix = "feature" | "hotfix" | "release" | "support" | "";
 
 interface IGitFlowConfig {
     branches: {

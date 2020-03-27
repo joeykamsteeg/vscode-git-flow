@@ -30,8 +30,8 @@
 				"category": "Git Flow"
 			},
 			{
-				"command": "gitflow.start.feature",
-				"title": "Start Feature",
+				"command": "gitflow.feature.start",
+				"title": "Feature Start",
 				"category": "Git Flow",
 				"icon": {
 					"light": "resources/light/add.svg",
@@ -40,21 +40,31 @@
 			},
 			{
 				"command": "gitflow.branch.delete",
-				"title": "Delete Branch",
+				"title": "Delete",
 				"category": "Git Flow"
 			}
 		],
 		"menus": {
+			"commandPalette": [
+				{
+					"command": "gitflow.checkout",
+					"when": "never"
+				},
+				{
+					"command": "gitflow.branch.delete",
+					"when": "never"
+				}
+			],
 			"view/item/context": [{
 				"command": "gitflow.checkout",
-				"group": "navigation"
+				"group": "navigation@1"
 			},{
 				"command": "gitflow.branch.delete",
 				"when": "view == gitflow.views.feature",
-				"group": "navigation"
+				"group": "navigation@3"
 			}],
 			"view/title": [{
-				"command": "gitflow.start.feature",
+				"command": "gitflow.feature.start",
 				"when": "view == gitflow.views.feature",
 				"group": "navigation"
 			},{

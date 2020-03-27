@@ -23,7 +23,7 @@ export class BranchTreeViewProvider implements vscode.TreeDataProvider<Branch> {
         const activeBranch = GitService.activeBranch;
         const branches = GitService.branches.filter( ( branch ) => ( branch.startsWith( `${this._prefix}/` ) ) );
 
-        return Promise.resolve( branches.map( ( branch ) => new Branch( branch, branch === activeBranch ) ) );
+        return Promise.resolve( branches.map( ( branch ) => new Branch( branch, branch === activeBranch, this._prefix ) ) );
     }
 
     public refresh(): void {
