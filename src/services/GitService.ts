@@ -1,6 +1,8 @@
 import * as vscode from "vscode";
 import { execSync, exec } from "child_process";
 
+export declare type GitFlowPrefix = "feature" | "hotfix" | "release" | "support";
+
 interface IGitFlowConfig {
     branches: {
         master: string;
@@ -69,6 +71,10 @@ class GitService {
 
     public checkout( branch: string ): string {
         return this.exec(`git checkout ${branch}`);
+    }
+
+    public flowStart( prefix: GitFlowPrefix, branch: string ) {
+        return this.exec(`git flow ${prefix} start ${branch}`);
     }
 }
 

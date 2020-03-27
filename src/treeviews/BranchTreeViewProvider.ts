@@ -3,10 +3,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { GitExtension } from "../types/git";
 import { exec, execSync } from "child_process";
-import GitService from "../services/GitService";
+import GitService, { GitFlowPrefix } from "../services/GitService";
 import Branch from "./BranchTreeItem";
-
-declare type GitFlowPrefix = "feature" | "hotfix" | "release" | "support";
 
 export class BranchTreeViewProvider implements vscode.TreeDataProvider<Branch> {
 

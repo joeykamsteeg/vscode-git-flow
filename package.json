@@ -28,6 +28,15 @@
 				"command": "gitflow.checkout",
 				"title": "Checkout",
 				"category": "Git Flow"
+			},
+			{
+				"command": "gitflow.start.feature",
+				"title": "Start Feature",
+				"category": "Git Flow",
+				"icon": {
+					"light": "resources/light/add.svg",
+					"dark": "resources/dark/add.svg"
+				}
 			}
 		],
 		"menus": {
@@ -36,6 +45,10 @@
 				"group": "navigation"
 			}],
 			"view/title": [{
+				"command": "gitflow.start.feature",
+				"when": "view == gitflow.views.feature",
+				"group": "navigation"
+			},{
 				"command": "gitflow.refresh",
 				"group": "navigation"
 			}]
