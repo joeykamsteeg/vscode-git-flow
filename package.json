@@ -2,7 +2,7 @@
 	"name": "vscode-git-flow",
 	"displayName": "git flow",
 	"description": "Git Flow UI interface for Visual Studio Code",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"preview": true,
 	"publisher": "PsykoSoldi3r",
 	"icon": "media/git-flow-icon.png",
@@ -84,6 +84,7 @@
 				"group": "navigation"
 			},{
 				"command": "gitflow.finish",
+				"when": "view == gitflow.views.feature",
 				"group": "1"
 			},{
 				"command": "gitflow.branch.delete",

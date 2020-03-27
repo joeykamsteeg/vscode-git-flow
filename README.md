@@ -2,7 +2,7 @@
 
 This extension is still work in progress and not all features are covered and still in preview state. 
 
-![](https://raw.githubusercontent.com/PsykoSoldi3r/vscode-itunes/master/screenshots/screenshot-v0.1.0.png)
+![](https://github.com/PsykoSoldi3r/vscode-git-flow/blob/master/screenshots/screenshot-v0.1.0.png?raw=true)
 
 ## Features
 
@@ -32,6 +32,10 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
+### 0.1.1
+
+- Removed finish action on master and develop branch menu
+
 ### 0.1.0
 
-Initial release of `vscode-git-flow`
+- Initial release of `vscode-git-flow`

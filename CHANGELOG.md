@@ -1,9 +1,13 @@
-# Change Log
-
-All notable changes to the "vscode-git-flow" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+# Changelog
+All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-- Initial release
+## v0.1.1
+- Removed finish action on master and develop branch menu
+
+## v0.1.0
+### Added
+- Initial release of vscode-git-flow
+- Visualized the master and develop branch and able to checkout
+- Visualized the features branch and able to checkout, finish and delete
