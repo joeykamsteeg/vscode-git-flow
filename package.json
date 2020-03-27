@@ -41,7 +41,16 @@
 				"category": "Git Flow"
 			},
 			{
-				"command": "gitflow.start",
+				"command": "gitflow.feature.start",
+				"title": "Start",
+				"category": "Git Flow",
+				"icon": {
+					"light": "resources/light/add.svg",
+					"dark": "resources/dark/add.svg"
+				}
+			},
+			{
+				"command": "gitflow.release.start",
 				"title": "Start",
 				"category": "Git Flow",
 				"icon": {
@@ -64,6 +73,14 @@
 			"commandPalette": [
 				{
 					"command": "gitflow.checkout",
+					"when": "never"
+				},
+				{
+					"command": "gitflow.feature.start",
+					"when": "never"
+				},
+				{
+					"command": "gitflow.release.start",
 					"when": "never"
 				},
 				{
@@ -92,8 +109,12 @@
 				"group": "7_modification"
 			}],
 			"view/title": [{
-				"command": "gitflow.start",
+				"command": "gitflow.feature.start",
 				"when": "view == gitflow.views.feature",
+				"group": "navigation"
+			},{
+				"command": "gitflow.release.start",
+				"when": "view == gitflow.views.release",
 				"group": "navigation"
 			},{
 				"command": "gitflow.refresh",
