@@ -15,6 +15,9 @@ export function activate(context: vscode.ExtensionContext) {
 	const featureTreeViewProvider = new BranchTreeViewProvider("feature");
 	vscode.window.registerTreeDataProvider("gitflow.views.feature", featureTreeViewProvider);
 
+	const releaseTreeViewProvider = new BranchTreeViewProvider("release");
+	vscode.window.registerTreeDataProvider("gitflow.views.release", releaseTreeViewProvider);
+
 	vscode.commands.registerCommand("gitflow.init", () => {
 		console.log("Init");
 	});

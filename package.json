@@ -118,6 +118,10 @@
 				"id": "gitflow.views.feature",
 				"name": "Features",
 				"when": "gitflow.initialized"
+			}, {
+				"id": "gitflow.views.release",
+				"name": "Releases",
+				"when": "gitflow.initialized"
 			}]
 		}
 	},
