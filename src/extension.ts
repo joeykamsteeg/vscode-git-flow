@@ -46,10 +46,8 @@ export function activate(context: vscode.ExtensionContext) {
 			return vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});
-
-	// Set the initialized state when application gets launched
-	const configuration = vscode.workspace.getConfiguration("gitflow");
-	configuration.update("initialized", GitService.isInitialized );
+	
+	vscode.commands.executeCommand("setContext", "gitflow.initialized", GitService.isInitialized );
 }
 
 // this method is called when your extension is deactivated

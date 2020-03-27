@@ -104,11 +104,11 @@
 			"gitflow-explorer": [{
 				"id": "gitflow.views.main",
 				"name": "Git Flow",
-				"when": "config.gitflow.initialized == true"
+				"when": "gitflow.initialized"
 			}, {
 				"id": "gitflow.views.feature",
 				"name": "Features",
-				"when": "config.gitflow.initialized == true"
+				"when": "gitflow.initialized"
 			}]
 		}
 	},
