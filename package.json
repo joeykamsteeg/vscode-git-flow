@@ -2,7 +2,7 @@
 	"name": "vscode-git-flow",
 	"displayName": "git flow",
 	"description": "Git Flow UI interface for Visual Studio Code",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"preview": true,
 	"publisher": "PsykoSoldi3r",
 	"icon": "media/git-flow-icon.png",
@@ -20,6 +20,17 @@
 	},
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "Git Flow",
+			"properties": {
+				"gitflow.views.feature.showRemoteBranches": {
+					"scope": "application",
+					"description": "Enable/disable show remote branches",
+					"type": "boolean",
+					"default": true
+				}
+			}
+		},
 		"commands":[
 			{
 				"command": "gitflow.init",
@@ -67,6 +78,15 @@
 				"command": "gitflow.branch.delete",
 				"title": "Delete",
 				"category": "Git Flow"
+			},
+			{
+				"command": "gitflow.views.feature.filterRemotes",
+				"title": "Filter Remotes Branches",
+				"category": "Git Flow",
+				"icon": {
+					"light": "resources/light/list-filter.svg",
+					"dark": "resources/dark/list-filter.svg"
+				}
 			}
 		],
 		"menus": {
@@ -94,6 +114,10 @@
 				{
 					"command": "gitflow.init",
 					"when": "never"
+				},
+				{
+					"command": "gitflow.views.feature.filterRemotes",
+					"when": "never"
 				}
 			],
 			"view/item/context": [{
@@ -111,14 +135,18 @@
 			"view/title": [{
 				"command": "gitflow.feature.start",
 				"when": "view == gitflow.views.feature",
-				"group": "navigation"
+				"group": "navigation@3"
+			},{
+				"command": "gitflow.views.feature.filterRemotes",
+				"when": "view == gitflow.views.feature",
+				"group": "navigation@1"
 			},{
 				"command": "gitflow.release.start",
 				"when": "view == gitflow.views.release",
 				"group": "navigation"
 			},{
 				"command": "gitflow.refresh",
-				"group": "navigation"
+				"group": "navigation@2"
 			}]
 		},	
 		"viewsContainers": {
