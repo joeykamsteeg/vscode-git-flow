@@ -25,7 +25,12 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 	vscode.commands.registerCommand("gitflow.checkout", ( item ) => {
 		if( item instanceof BranchTreeItem ) {
-			GitService.checkout( item.branch );
+			if ( item.isRemote ) {
+				GitService.flowTrack( item.prefix, item.branchName );
+			} else {
+				GitService.checkout( item.branch );
+			}
+
 			return vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});
@@ -55,6 +60,16 @@ export function activate(context: vscode.ExtensionContext) {
 			GitService.delete( item.branch );
 			return vscode.commands.executeCommand("gitflow.refresh");
 		}
+	});
+
+	vscode.commands.registerCommand("gitflow.views.feature.filterRemotes", () => {
+		const configuration = vscode.workspace.getConfiguration("gitflow");
+		const showRemoteBranches = configuration.get<boolean>("views.feature.showRemoteBranches", true );
+
+		configuration.update("views.feature.showRemoteBranches", !showRemoteBranches, vscode.ConfigurationTarget.Global )
+			.then( () => {
+				vscode.commands.executeCommand("gitflow.refresh");
+			});
 	});
 	
 	vscode.commands.executeCommand("setContext", "gitflow.initialized", GitService.isInitialized );
