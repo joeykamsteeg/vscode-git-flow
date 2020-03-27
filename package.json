@@ -23,12 +23,11 @@
 		"configuration": {
 			"title": "Git Flow",
 			"properties": {
-				"gitflow.views.feature.hideRemoteBranches": {
+				"gitflow.views.feature.showRemoteBranches": {
 					"scope": "application",
-					"title": "Display Remote Branches",
-					"description": "Enable/disable hide remote branches",
+					"description": "Enable/disable show remote branches",
 					"type": "boolean",
-					"default": false
+					"default": true
 				}
 			}
 		},
