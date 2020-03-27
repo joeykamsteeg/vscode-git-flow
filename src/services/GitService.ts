@@ -63,7 +63,7 @@ class GitService {
     }
 
     public get branches(): string[] {
-        const output = this.exec("git branch");
+        const output = this.exec("git branch --all");
         const rawBranches = output.split(`\n`);
 
         return rawBranches.map( ( branch ) => {
@@ -84,6 +84,10 @@ class GitService {
 
     public flowStart( prefix: GitFlowPrefix, branch: string ) {
         return this.exec(`git flow ${prefix} start ${branch}`);
+    }
+
+    public flowTrack( prefix: GitFlowPrefix, branch: string ) {
+        return this.exec(`git flow ${prefix} track ${branch}`);
     }
 
     public flowFinish( prefix: GitFlowPrefix, branch: string ) {
