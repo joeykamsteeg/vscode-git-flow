@@ -21,13 +21,9 @@ This extension is still work in progress and not all features are covered and st
 
 Git repository with git flow already initialized is required.
 
-## Extension Settings
-
-* `gitflow.views.feature.showRemoteBranches`: display remote branches in feature branch list
-
 ## Known Issues
 
-* Finished a feature will not merge the feature branch into the develop branch
+* Finishing a feature will not merge the feature branch into the develop branch
 
 ## Release Notes
 
