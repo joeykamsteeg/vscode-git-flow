@@ -25,7 +25,12 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 	vscode.commands.registerCommand("gitflow.checkout", ( item ) => {
 		if( item instanceof BranchTreeItem ) {
-			GitService.checkout( item.branch );
+			if ( item.isRemote ) {
+				GitService.flowTrack( item.prefix, item.branchName );
+			} else {
+				GitService.checkout( item.branch );
+			}
+
 			return vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});

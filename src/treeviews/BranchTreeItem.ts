@@ -9,21 +9,26 @@ export default class Branch extends vscode.TreeItem {
     constructor( 
         branch: string,
         public readonly active: boolean,
-        prefix: GitFlowPrefix = ""
+        prefix: GitFlowPrefix = "",
+        public readonly isRemote: boolean = false
     ) {
         super( branch, vscode.TreeItemCollapsibleState.None );
 
         this._branch = branch;
         this._prefix = prefix;
 
-        this.label = this._branch.replace(`${this._prefix}/`, "");
+        this.label = this.isRemote ? this._branch.replace(`remotes/origin/${this._prefix}/`, "") : this._branch.replace(`${this._prefix}/`, "");
     }
 
     public get branch(): string {
         return this._branch;
     }
 
-    public get prefix(): string {
+    public get branchName(): string {
+        return this.label || "";
+    }
+
+    public get prefix(): GitFlowPrefix {
         return this._prefix;
     }
 
@@ -35,5 +40,5 @@ export default class Branch extends vscode.TreeItem {
         return this.active === true ? "active" : "";
     }
 
-    iconPath = new vscode.ThemeIcon( this.active === true ? "circle-filled" : "circle-outline");
+    iconPath = new vscode.ThemeIcon( this.isRemote === true ? "git-branch" : this.active === true ? "circle-filled" : "circle-outline");
 }
