@@ -1,8 +1,9 @@
 {
 	"name": "vscode-git-flow",
 	"displayName": "git flow",
-	"description": "Manage git flow with this extension",
-	"version": "0.0.1",
+	"description": "Git Flow UI interface for Visual Studio Code",
+	"version": "0.1.0",
+	"preview": true,
 	"engines": {
 		"vscode": "^1.43.0"
 	},
