@@ -7,40 +7,10 @@ import { BranchTreeViewProvider } from './treeviews/BranchTreeViewProvider';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	console.log("Git Flow: Activated");
-
 	const mainTreeViewProvider = new BranchTreeViewProvider();
-	vscode.window.registerTreeDataProvider("gitflowMainBranchesExplorer", mainTreeViewProvider);
+	vscode.window.registerTreeDataProvider("gitflow.views.main", mainTreeViewProvider);
 
-	const featureBrancheTreeViewProvider = new BranchTreeViewProvider();
-	vscode.window.registerTreeDataProvider("gitflowFeatureBranchesExplorer", featureBrancheTreeViewProvider);
-
-	const hotfixesBrancheTreeViewProvider = new BranchTreeViewProvider();
-	vscode.window.registerTreeDataProvider("gitflowHotfixesBranchesExplorer", hotfixesBrancheTreeViewProvider);
-
-	const releasesBrancheTreeViewProvider = new BranchTreeViewProvider();
-	vscode.window.registerTreeDataProvider("gitflowReleasesBranchesExplorer", releasesBrancheTreeViewProvider);
-
-	const disposable = vscode.commands.registerCommand("gitflow.refresh", () => {
-		vscode.window.showInformationMessage('Hello World!');
-	});
-	context.subscriptions.push( disposable );
-
-	// // Use the console to output diagnostic information (console.log) and errors (console.error)
-	// // This line of code will only be executed once when your extension is activated
-	// console.log('Congratulations, your extension "vscode-git-flow" is now active!');
-
-	// // The command has been defined in the package.json file
-	// // Now provide the implementation of the command with registerCommand
-	// // The commandId parameter must match the command field in package.json
-	// let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-	// 	// The code you place here will be executed every time your command is executed
-
-	// 	// Display a message box to the user
-	// 	vscode.window.showInformationMessage('Hello World!');
-	// });
-
-	// context.subscriptions.push(disposable);
+	vscode.commands.registerCommand("gitflow.refresh", () => mainTreeViewProvider.refresh() );
 }
 
 // this method is called when your extension is deactivated

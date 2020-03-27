@@ -1,6 +1,8 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
+import { GitExtension } from "../types/git";
+import { exec, execSync } from "child_process";
 
 export class BranchTreeViewProvider implements vscode.TreeDataProvider<Branch> {
 
@@ -12,36 +14,47 @@ export class BranchTreeViewProvider implements vscode.TreeDataProvider<Branch> {
         return element;
     }
     getChildren(element?: Branch | undefined): vscode.ProviderResult<Branch[]> {
-        return Promise.resolve([ new Branch("1", "1.0.0", vscode.TreeItemCollapsibleState.Collapsed )]);
+        const master: string = execSync("git config gitflow.branch.master",{
+            cwd: vscode.workspace.rootPath
+        }).toString().trim();
+
+        const develop: string = execSync("git config gitflow.branch.develop",{
+            cwd: vscode.workspace.rootPath
+        }).toString().trim();
+        
+        const currentBranch = execSync("git branch | sed -n '/\* /s///p'", {
+            cwd: vscode.workspace.rootPath
+        }).toString().trim();
+
+        const masterBranch = new Branch( master, currentBranch === master );
+        const developBranch = new Branch( develop, currentBranch === develop );
+
+        return Promise.resolve([ masterBranch, developBranch ]);
     }
 
     public refresh(): void {
-        this._onDidChangeTreeData.fire();
         console.log("Refresh");
+        this._onDidChangeTreeData.fire();
+        this.getChildren();
     }
 }
 
 class Branch extends vscode.TreeItem {
-
+    
     constructor( 
-        public readonly label: string,
-        private version: string,
-        public readonly collapsibleState: vscode.TreeItemCollapsibleState
+        label: string,
+        public readonly active: boolean
     ) {
-        super( label, collapsibleState );
+        super( label, vscode.TreeItemCollapsibleState.None );
     }
 
     public get tooltip(): string {
-        // TODO: Return Full Branch Name
         return "";
     }
 
     public get description(): string {
-        return "";
+        return this.active === true ? "active" : "";
     }
 
-    iconPath = {
-        light: path.join(__filename, "..", "..", "resources", "light", "code-branch-light.svg"),
-        dark: path.join(__filename, "..", "..", "resources", "dark", "code-branch-light.svg"),
-    };
+    iconPath = new vscode.ThemeIcon( this.active === true ? "circle-filled" : "circle-outline");
 }
