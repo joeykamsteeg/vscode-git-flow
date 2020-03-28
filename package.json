@@ -5,7 +5,7 @@
 	"version": "0.2.1",
 	"preview": true,
 	"publisher": "PsykoSoldi3r",
-	"icon": "media/git-flow-icon.png",
+	"icon": "media/git-flow-icon-v2.png",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
