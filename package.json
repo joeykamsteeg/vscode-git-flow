@@ -2,10 +2,10 @@
 	"name": "vscode-git-flow",
 	"displayName": "git flow",
 	"description": "Git Flow UI interface for Visual Studio Code",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"preview": true,
 	"publisher": "PsykoSoldi3r",
-	"icon": "media/git-flow-icon.png",
+	"icon": "media/git-flow-icon-v2.png",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
@@ -75,6 +75,11 @@
 				"category": "Git Flow"
 			},
 			{
+				"command": "gitflow.publish",
+				"title": "Publish",
+				"category": "Git Flow"
+			},
+			{
 				"command": "gitflow.branch.delete",
 				"title": "Delete",
 				"category": "Git Flow"
@@ -126,6 +131,10 @@
 			},{
 				"command": "gitflow.finish",
 				"when": "view != gitflow.views.main",
+				"group": "1"
+			},{
+				"command": "gitflow.publish",
+				"when": "view == gitflow.views.feature",
 				"group": "1"
 			},{
 				"command": "gitflow.branch.delete",
