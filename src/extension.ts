@@ -47,10 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand("gitflow.finish", ( item ) => {
 		if( item instanceof BranchTreeItem && item.prefix === "feature" ) {
-			GitService.flowFinish( item.prefix, item.branch );
-			GitService.checkout( GitService.flowConfig.branches.develop! );
-			GitService.delete( item.branch );
-
+			GitService.flowFinish( item.prefix, item.branchName );
 			vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});
@@ -70,6 +67,12 @@ export function activate(context: vscode.ExtensionContext) {
 			.then( () => {
 				vscode.commands.executeCommand("gitflow.refresh");
 			});
+	});
+
+	vscode.commands.registerCommand("gitflow.publish", ( item ) => {
+		if( item instanceof BranchTreeItem && item.isRemote === false ) {
+			GitService.flowPublish( item.prefix, item.branchName );
+		}
 	});
 	
 	vscode.commands.executeCommand("setContext", "gitflow.initialized", GitService.isInitialized );
