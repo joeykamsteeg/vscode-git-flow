@@ -52,7 +52,16 @@
 				"category": "Git Flow"
 			},
 			{
-				"command": "gitflow.start",
+				"command": "gitflow.feature.start",
+				"title": "Start",
+				"category": "Git Flow",
+				"icon": {
+					"light": "resources/light/add.svg",
+					"dark": "resources/dark/add.svg"
+				}
+			},
+			{
+				"command": "gitflow.release.start",
 				"title": "Start",
 				"category": "Git Flow",
 				"icon": {
@@ -92,6 +101,14 @@
 					"when": "never"
 				},
 				{
+					"command": "gitflow.feature.start",
+					"when": "never"
+				},
+				{
+					"command": "gitflow.release.start",
+					"when": "never"
+				},
+				{
 					"command": "gitflow.branch.delete",
 					"when": "never"
 				},
@@ -113,7 +130,7 @@
 				"group": "navigation"
 			},{
 				"command": "gitflow.finish",
-				"when": "view == gitflow.views.feature",
+				"when": "view != gitflow.views.main",
 				"group": "1"
 			},{
 				"command": "gitflow.publish",
@@ -121,17 +138,21 @@
 				"group": "1"
 			},{
 				"command": "gitflow.branch.delete",
-				"when": "view == gitflow.views.feature",
+				"when": "view != gitflow.views.main",
 				"group": "7_modification"
 			}],
 			"view/title": [{
-				"command": "gitflow.start",
+				"command": "gitflow.feature.start",
 				"when": "view == gitflow.views.feature",
 				"group": "navigation@3"
 			},{
 				"command": "gitflow.views.feature.filterRemotes",
 				"when": "view == gitflow.views.feature",
 				"group": "navigation@1"
+			},{
+				"command": "gitflow.release.start",
+				"when": "view == gitflow.views.release",
+				"group": "navigation"
 			},{
 				"command": "gitflow.refresh",
 				"group": "navigation@2"
@@ -154,6 +175,10 @@
 			}, {
 				"id": "gitflow.views.feature",
 				"name": "Features",
+				"when": "gitflow.initialized"
+			}, {
+				"id": "gitflow.views.release",
+				"name": "Releases",
 				"when": "gitflow.initialized"
 			}]
 		}

@@ -35,6 +35,10 @@ class GitService {
                 return output.toString().trim();
             }
         } catch( ex ) {
+            if (ex && ex.message ) {
+                vscode.window.showErrorMessage( ex.message );
+            }
+
             return "";
         }
 
