@@ -16,14 +16,15 @@ This extension is still work in progress and not all features are covered and st
 * Checkout (local, remote)
 * Start
 * Finish
+* Delete (local, remote)
 
 ## Requirements
 
 Git repository with git flow already initialized is required.
 
-## Known Issues
+<!-- ## Known Issues
 
-* Finishing a feature will not merge the feature branch into the develop branch
+* Finishing a feature will not merge the feature branch into the develop branch -->
 
 ## Release Notes
 
