@@ -94,8 +94,14 @@ class GitService {
         return this.exec(`git flow ${prefix} finish ${branch}`);
     }
 
-    public delete( branch: string ) {
-        return this.exec(`git branch -d ${branch}`);
+    public delete( branch: string, isRemote: boolean = false ) {
+        if( isRemote ) {
+            const remoteBranch = branch.replace("remotes/origin/", "" );
+            return this.exec(`git push origin --delete ${remoteBranch}`);
+        }
+        else {
+            return this.exec(`git branch -d ${branch}`);
+        }
     }
 
     public get isInitialized(): boolean {

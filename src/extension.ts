@@ -57,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand("gitflow.branch.delete", ( item ) => {
 		if( item instanceof BranchTreeItem ) {
-			GitService.delete( item.branch );
+			GitService.delete( item.branch, item.isRemote );
 			return vscode.commands.executeCommand("gitflow.refresh");
 		}
 	});
