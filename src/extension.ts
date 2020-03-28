@@ -68,12 +68,6 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.commands.executeCommand("gitflow.refresh");
 			});
 	});
-
-	vscode.commands.registerCommand("gitflow.publish", ( item ) => {
-		if( item instanceof BranchTreeItem && item.isRemote === false ) {
-			GitService.flowPublish( item.prefix, item.branchName );
-		}
-	});
 	
 	vscode.commands.executeCommand("setContext", "gitflow.initialized", GitService.isInitialized );
 }
