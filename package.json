@@ -7,7 +7,7 @@
 	"publisher": "PsykoSoldi3r",
 	"icon": "media/git-flow-icon-v2.png",
 	"engines": {
-		"vscode": "^1.42.0"
+		"vscode": "^1.43.0"
 	},
 	"categories": [
 		"Other"
