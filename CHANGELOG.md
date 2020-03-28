@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## v0.2.1
+### Fixed
+- Fixed issue finished feature branch not merging into develop
+- Delete remote branches
+
 ## v0.2.0
 ### Added
 - Display remote branches in the feature list
