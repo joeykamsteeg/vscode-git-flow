@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { exec, execSync } from "child_process";
 import Branch from "./BranchTreeItem";
+import GitService from "../services/GitService";
 
 export class MainTreeViewProvider implements vscode.TreeDataProvider<Branch> {
 
@@ -13,22 +14,18 @@ export class MainTreeViewProvider implements vscode.TreeDataProvider<Branch> {
         return element;
     }
     getChildren(element?: Branch | undefined): vscode.ProviderResult<Branch[]> {
-        const master: string = execSync("git config gitflow.branch.master",{
+        const master: string = execSync("git config gitflow.branch.master", {
             cwd: vscode.workspace.rootPath
         }).toString().trim();
 
-        const develop: string = execSync("git config gitflow.branch.develop",{
-            cwd: vscode.workspace.rootPath
-        }).toString().trim();
-        
-        const currentBranch = execSync("git branch | sed -n '/\* /s///p'", {
+        const develop: string = execSync("git config gitflow.branch.develop", {
             cwd: vscode.workspace.rootPath
         }).toString().trim();
 
-        const masterBranch = new Branch( master, currentBranch === master );
-        const developBranch = new Branch( develop, currentBranch === develop );
+        const masterBranch = new Branch(master, GitService.activeBranch === master);
+        const developBranch = new Branch(develop, GitService.activeBranch === develop);
 
-        return Promise.resolve([ masterBranch, developBranch ]);
+        return Promise.resolve([masterBranch, developBranch]);
     }
 
     public refresh(): void {

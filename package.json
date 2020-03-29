@@ -2,10 +2,15 @@
 	"name": "vscode-git-flow",
 	"displayName": "git flow",
 	"description": "Git Flow UI interface for Visual Studio Code",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"preview": true,
 	"publisher": "PsykoSoldi3r",
 	"icon": "media/git-flow-icon-v2.png",
+	"keywords": [
+		"git-flow",
+		"git",
+		"git flow"
+	],
 	"engines": {
 		"vscode": "^1.43.0"
 	},
@@ -31,7 +36,7 @@
 				}
 			}
 		},
-		"commands":[
+		"commands": [
 			{
 				"command": "gitflow.init",
 				"title": "Init",
@@ -52,7 +57,16 @@
 				"category": "Git Flow"
 			},
 			{
-				"command": "gitflow.start",
+				"command": "gitflow.feature.start",
+				"title": "Start",
+				"category": "Git Flow",
+				"icon": {
+					"light": "resources/light/add.svg",
+					"dark": "resources/dark/add.svg"
+				}
+			},
+			{
+				"command": "gitflow.release.start",
 				"title": "Start",
 				"category": "Git Flow",
 				"icon": {
@@ -92,6 +106,14 @@
 					"when": "never"
 				},
 				{
+					"command": "gitflow.feature.start",
+					"when": "never"
+				},
+				{
+					"command": "gitflow.release.start",
+					"when": "never"
+				},
+				{
 					"command": "gitflow.branch.delete",
 					"when": "never"
 				},
@@ -108,35 +130,49 @@
 					"when": "never"
 				}
 			],
-			"view/item/context": [{
-				"command": "gitflow.checkout",
-				"group": "navigation"
-			},{
-				"command": "gitflow.finish",
-				"when": "view == gitflow.views.feature",
-				"group": "1"
-			},{
-				"command": "gitflow.publish",
-				"when": "view == gitflow.views.feature",
-				"group": "1"
-			},{
-				"command": "gitflow.branch.delete",
-				"when": "view == gitflow.views.feature",
-				"group": "7_modification"
-			}],
-			"view/title": [{
-				"command": "gitflow.start",
-				"when": "view == gitflow.views.feature",
-				"group": "navigation@3"
-			},{
-				"command": "gitflow.views.feature.filterRemotes",
-				"when": "view == gitflow.views.feature",
-				"group": "navigation@1"
-			},{
-				"command": "gitflow.refresh",
-				"group": "navigation@2"
-			}]
-		},	
+			"view/item/context": [
+				{
+					"command": "gitflow.checkout",
+					"group": "navigation"
+				},
+				{
+					"command": "gitflow.finish",
+					"when": "view != gitflow.views.main",
+					"group": "1"
+				},
+				{
+					"command": "gitflow.publish",
+					"when": "view == gitflow.views.feature",
+					"group": "1"
+				},
+				{
+					"command": "gitflow.branch.delete",
+					"when": "view != gitflow.views.main",
+					"group": "7_modification"
+				}
+			],
+			"view/title": [
+				{
+					"command": "gitflow.feature.start",
+					"when": "view == gitflow.views.feature",
+					"group": "navigation@3"
+				},
+				{
+					"command": "gitflow.views.feature.filterRemotes",
+					"when": "view == gitflow.views.feature",
+					"group": "navigation@1"
+				},
+				{
+					"command": "gitflow.release.start",
+					"when": "view == gitflow.views.release",
+					"group": "navigation"
+				},
+				{
+					"command": "gitflow.refresh",
+					"group": "navigation@2"
+				}
+			]
+		},
 		"viewsContainers": {
 			"activitybar": [
 				{
@@ -147,15 +183,23 @@
 			]
 		},
 		"views": {
-			"gitflow-explorer": [{
-				"id": "gitflow.views.main",
-				"name": "Git Flow",
-				"when": "gitflow.initialized"
-			}, {
-				"id": "gitflow.views.feature",
-				"name": "Features",
-				"when": "gitflow.initialized"
-			}]
+			"gitflow-explorer": [
+				{
+					"id": "gitflow.views.main",
+					"name": "Git Flow",
+					"when": "gitflow.initialized"
+				},
+				{
+					"id": "gitflow.views.feature",
+					"name": "Features",
+					"when": "gitflow.initialized"
+				},
+				{
+					"id": "gitflow.views.release",
+					"name": "Releases",
+					"when": "never && gitflow.initialized"
+				}
+			]
 		}
 	},
 	"scripts": {

@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Visualized the releases branches and able to checkout, finish and delete
+
+## v0.2.2
+### Added
+- Display error when git command execution has failed
+
+### Fixed
+- Windows: Fetch correct active branch
 
 ## v0.2.1
 ### Fixed
