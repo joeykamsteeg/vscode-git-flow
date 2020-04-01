@@ -2,7 +2,7 @@
 	"name": "vscode-git-flow",
 	"displayName": "git flow",
 	"description": "Git Flow UI interface for Visual Studio Code",
-	"version": "0.2.2",
+	"version": "0.3.0",
 	"preview": true,
 	"publisher": "PsykoSoldi3r",
 	"icon": "media/git-flow-icon-v2.png",
@@ -80,13 +80,13 @@
 				"category": "Git Flow"
 			},
 			{
-				"command": "gitflow.publish",
-				"title": "Publish",
+				"command": "gitflow.branch.delete",
+				"title": "Delete",
 				"category": "Git Flow"
 			},
 			{
-				"command": "gitflow.branch.delete",
-				"title": "Delete",
+				"command": "gitflow.merge.develop.feature",
+				"title": "Merge `develop` into...",
 				"category": "Git Flow"
 			},
 			{
@@ -128,6 +128,10 @@
 				{
 					"command": "gitflow.views.feature.filterRemotes",
 					"when": "never"
+				},
+				{
+					"command": "gitflow.merge.develop.feature",
+					"when": "never"
 				}
 			],
 			"view/item/context": [
@@ -136,13 +140,13 @@
 					"group": "navigation"
 				},
 				{
-					"command": "gitflow.finish",
-					"when": "view != gitflow.views.main",
+					"command": "gitflow.merge.develop.feature",
+					"when": "view == gitflow.views.feature",
 					"group": "1"
 				},
 				{
-					"command": "gitflow.publish",
-					"when": "view == gitflow.views.feature",
+					"command": "gitflow.finish",
+					"when": "view != gitflow.views.main",
 					"group": "1"
 				},
 				{
