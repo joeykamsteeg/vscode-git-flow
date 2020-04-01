@@ -3,9 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-- Display error when git command execution has failed
 - Visualized the releases branches and able to checkout, finish and delete
 
+## v0.3.0
+### Added
+- Option to merge develop branch into feature
+
+## v0.2.2
 ### Fixed
 - Windows: Fetch correct active branch
 
