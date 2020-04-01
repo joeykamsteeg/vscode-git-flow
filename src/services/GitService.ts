@@ -112,6 +112,16 @@ class GitService {
         }
     }
 
+    public mergeBranch(branchToMerge: string, prefix: GitFlowPrefix, branchName: string, isRemote?: boolean) {
+        if (isRemote) {
+            this.flowTrack(prefix, branchName);
+        } else {
+            this.checkout(`${prefix}/${branchName}`)
+        }
+
+        this.exec(`git merge ${branchToMerge}`);
+    }
+
     public get isInitialized(): boolean {
         const { master, develop } = this.flowConfig.branches;
         const { feature, hotfix, release, support } = this.flowConfig.prefixes;

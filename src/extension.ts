@@ -81,6 +81,13 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 	});
 
+	vscode.commands.registerCommand("gitflow.merge.develop.feature", (item) => {
+		if (item instanceof BranchTreeItem) {
+			GitService.mergeBranch(GitService.flowConfig.branches.develop || "", item.prefix, item.branchName, item.isRemote);
+			vscode.commands.executeCommand("gitflow.refresh");
+		}
+	})
+
 	vscode.commands.executeCommand("setContext", "gitflow.initialized", GitService.isInitialized);
 }
 
