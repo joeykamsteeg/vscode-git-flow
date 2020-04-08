@@ -16,6 +16,11 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Display error when git command execution has failed
 
+## v0.3.0
+### Added
+- Option to merge develop branch into feature
+
+## v0.2.2
 ### Fixed
 - Windows: Fetch correct active branch
 
