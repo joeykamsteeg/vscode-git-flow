@@ -2,12 +2,19 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Fixed
+- Don't show error message when get a git config value
 
+### v0.3.0
 ### Added
-- Visualized the releases branches and able to checkout, finish and delete
+- Option to merge develop branch into feature
+
+### v0.2.2
+### Added
+- Display error when git command execution has failed
 
 ### Fixed
-- Don't show error messages when trying to get git config values
+- Windows: Fetch correct active branch
 
 ## v0.2.1
 ### Fixed
