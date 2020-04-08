@@ -123,6 +123,8 @@ class GitService {
     }
 
     public mergeBranch(branchToMerge: string, prefix: GitFlowPrefix, branchName: string, isRemote?: boolean) {
+        this.exec(`git pull origin ${branchToMerge}`);
+        
         if (isRemote) {
             this.flowTrack(prefix, branchName);
         } else {
