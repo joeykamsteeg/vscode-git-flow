@@ -1,7 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+### v0.3.1
+### Fixed
+- Don't show error message when get a git config value
+- Merge the develop branch before the branch get merged into the feature branch
+
+### v0.3.0
+### Added
+- Option to merge develop branch into feature
+
+### v0.2.2
+### Added
+- Display error when git command execution has failed
+
+### Fixed
+- Windows: Fetch correct active branch
 
 ## v0.2.1
 ### Fixed
