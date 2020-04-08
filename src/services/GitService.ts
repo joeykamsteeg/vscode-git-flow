@@ -25,7 +25,7 @@ class GitService {
         this._cwd = cwd;
     }
 
-    private exec( command: string ) : string {
+    private exec( command: string, showErrorMessage: boolean = true ) : string {
         try { 
             const output = execSync( command, {
                 cwd: this._cwd
@@ -35,7 +35,7 @@ class GitService {
                 return output.toString().trim();
             }
         } catch( ex ) {
-            if (ex && ex.message ) {
+            if ( showErrorMessage && ex && ex.message ) {
                 vscode.window.showErrorMessage( ex.message );
             }
 
@@ -46,7 +46,7 @@ class GitService {
     }
 
     private getConfig( key: string ): string {
-        return this.exec(`git config ${key}`);
+        return this.exec(`git config ${key}`, false);
     }
 
     public get flowConfig(): IGitFlowConfig {
@@ -95,6 +95,15 @@ class GitService {
     }
 
     public flowFinish( prefix: GitFlowPrefix, branch: string ) {
+        if( prefix === "release" ) {
+            vscode.window.showInputBox({
+                placeHolder: "Enter tag message"
+            }).then( ( tagMessage ) => {
+                execSync("", {
+                    input: tagMessage,
+                });
+            });
+        }
         return this.exec(`git flow ${prefix} finish ${branch}`);
     }
 
@@ -106,6 +115,10 @@ class GitService {
         else {
             return this.exec(`git branch -d ${branch}`);
         }
+    }
+
+    public pushTags(): string {
+        return this.exec("git push --tags");
     }
 
     public get isInitialized(): boolean {

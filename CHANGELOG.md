@@ -2,9 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
 ### Added
-- Display error when git command execution has failed
 - Visualized the releases branches and able to checkout, finish and delete
+
+### Fixed
+- Don't show error messages when trying to get git config values
 
 ## v0.2.1
 ### Fixed
