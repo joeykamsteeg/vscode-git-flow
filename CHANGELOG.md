@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Fixed
 - Don't show error message when get a git config value
+- Merge the develop branch before the branch get merged into the feature branch
 
 ### v0.3.0
 ### Added
