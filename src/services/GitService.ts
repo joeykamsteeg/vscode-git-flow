@@ -122,6 +122,15 @@ class GitService {
         }
     }
 
+    public pull( branch: string ){
+        const currentBranch = this.activeBranch;
+        console.log( currentBranch );
+
+        this.exec(`git checkout ${branch}`);
+        this.exec(`git pull`);
+        this.exec(`git checkout ${currentBranch}`);
+    }
+
     public mergeBranch(branchToMerge: string, prefix: GitFlowPrefix, branchName: string, isRemote?: boolean) {
         this.exec(`git pull origin ${branchToMerge}`);
         
