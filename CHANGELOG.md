@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 <!-- ## [Unreleased] -->
 
+### v0.4.0
+- Option to pull a branch
+- Output Logs
+
 ### v0.3.1
 ### Fixed
 - Don't show error message when get a git config value

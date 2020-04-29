@@ -71,6 +71,13 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
+	vscode.commands.registerCommand("gitflow.branch.pull", ( item ) => {
+		if( item instanceof BranchTreeItem ) {
+			GitService.pull(item.branch);
+			return vscode.commands.executeCommand("gitflow.refresh");
+		}
+	});
+
 	vscode.commands.registerCommand("gitflow.views.feature.filterRemotes", () => {
 		const configuration = vscode.workspace.getConfiguration("gitflow");
 		const showRemoteBranches = configuration.get<boolean>("views.feature.showRemoteBranches", true);
