@@ -1,9 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
-### Added
+### v0.4.0
 - Option to pull a branch
 - Output Logs
 
