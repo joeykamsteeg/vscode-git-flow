@@ -39,6 +39,7 @@ class GitService {
             }
         } catch( ex ) {
             if ( showErrorMessage && ex && ex.message ) {
+                this._outputChannel.appendLine( `Error: ${ex.message}`);
                 vscode.window.showErrorMessage( ex.message );
             }
 
