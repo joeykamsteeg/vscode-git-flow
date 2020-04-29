@@ -20,13 +20,16 @@ interface IGitFlowConfig {
 class GitService {
 
     private _cwd: string;
+    private _outputChannel: vscode.OutputChannel;
 
-    constructor(cwd: string) {
+    constructor(cwd: string, outputChannel: vscode.OutputChannel) {
         this._cwd = cwd;
+        this._outputChannel = outputChannel;
     }
 
     private exec( command: string, showErrorMessage: boolean = true ) : string {
         try { 
+            this._outputChannel.appendLine( command );
             const output = execSync( command, {
                 cwd: this._cwd
             });
@@ -36,6 +39,7 @@ class GitService {
             }
         } catch( ex ) {
             if ( showErrorMessage && ex && ex.message ) {
+                this._outputChannel.appendLine( `Error: ${ex.message}`);
                 vscode.window.showErrorMessage( ex.message );
             }
 
@@ -166,5 +170,5 @@ class GitService {
     }
 }
 
-const service = new GitService(vscode.workspace.rootPath || "");
+const service = new GitService(vscode.workspace.rootPath || "", vscode.window.createOutputChannel("Git Flow") );
 export default service;
