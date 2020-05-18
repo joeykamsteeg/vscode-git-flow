@@ -29,6 +29,6 @@ export class MainTreeViewProvider implements vscode.TreeDataProvider<Branch> {
     }
 
     public refresh(): void {
-        this._onDidChangeTreeData.fire();
+        this._onDidChangeTreeData.fire(undefined);
     }
 }
