@@ -35,6 +35,7 @@ class GitService {
             });
 
             if (output) {
+                this._outputChannel.appendLine( output.toString() );
                 return output.toString().trim();
             }
         } catch( ex ) {

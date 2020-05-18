@@ -3,9 +3,12 @@ All notable changes to this project will be documented in this file.
 
 <!-- ## [Unreleased] -->
 
+### v0.4.1
+- Log the git commands output to Output
+
 ### v0.4.0
 - Option to pull a branch
-- Output Logs
+- Output Error Logs
 
 ### v0.3.1
 ### Fixed
