@@ -93,7 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
 			GitService.mergeBranch(GitService.flowConfig.branches.develop || "", item.prefix, item.branchName, item.isRemote);
 			vscode.commands.executeCommand("gitflow.refresh");
 		}
-	})
+	});
 
 	vscode.commands.executeCommand("setContext", "gitflow.initialized", GitService.isInitialized);
 }
