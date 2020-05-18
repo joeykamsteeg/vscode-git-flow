@@ -17,6 +17,9 @@ jobs:
      - name: Install VSCE
        run: |
          sudo npm install -g vsce
+     - name: Compile
+       run: |
+         yarn run compile
      - name: Publish
        run: |
          vsce publish -p $VSCE_TOKEN
