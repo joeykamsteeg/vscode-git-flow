@@ -3,10 +3,16 @@ All notable changes to this project will be documented in this file.
 
 <!-- ## [Unreleased] -->
 
+### v0.4.2
+### Fixed
+- Feature branch list did not display correct branches with a differect `git config gitflow.prefix.feature` setting. (#2, special thanks to @darkpio)
+
 ### v0.4.1
+### Added
 - Log the git commands output to Output
 
 ### v0.4.0
+### Added
 - Option to pull a branch
 - Output Error Logs
 
