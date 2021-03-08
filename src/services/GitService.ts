@@ -28,7 +28,7 @@ class GitService {
     }
 
     private exec( command: string, showErrorMessage: boolean = true ) : string {
-        try { 
+        try {
             this._outputChannel.appendLine( command );
             const output = execSync( command, {
                 cwd: this._cwd
@@ -99,11 +99,11 @@ class GitService {
         return this.exec(`git flow ${prefix} start ${branch}`);
     }
 
-    public flowTrack(prefix: GitFlowPrefix, branch: string) {
+    public flowTrack(prefix: GitFlowPrefix, branch: string | vscode.TreeItemLabel) {
         return this.exec(`git flow ${prefix} track ${branch}`);
     }
 
-    public flowFinish( prefix: GitFlowPrefix, branch: string ) {
+    public flowFinish( prefix: GitFlowPrefix, branch: string | vscode.TreeItemLabel ) {
         if( prefix === "release" ) {
             vscode.window.showInputBox({
                 placeHolder: "Enter tag message"
@@ -136,9 +136,9 @@ class GitService {
         this.exec(`git checkout ${currentBranch}`);
     }
 
-    public mergeBranch(branchToMerge: string, prefix: GitFlowPrefix, branchName: string, isRemote?: boolean) {
+    public mergeBranch(branchToMerge: string | vscode.TreeItemLabel, prefix: GitFlowPrefix, branchName: string | vscode.TreeItemLabel, isRemote?: boolean) {
         this.exec(`git pull origin ${branchToMerge}`);
-        
+
         if (isRemote) {
             this.flowTrack(prefix, branchName);
         } else {
@@ -151,14 +151,6 @@ class GitService {
     public get isInitialized(): boolean {
         const { master, develop } = this.flowConfig.branches;
         const { feature, hotfix, release, support } = this.flowConfig.prefixes;
-
-        if (master && develop && feature && hotfix && release && support) {
-            const configuration = vscode.workspace.getConfiguration("gitflow");
-            configuration.update("initialized", true);
-        } else {
-            const configuration = vscode.workspace.getConfiguration("gitflow");
-            configuration.update("initialized", false);
-        }
 
         return (
             master !== undefined &&
