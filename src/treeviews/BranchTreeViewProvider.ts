@@ -15,27 +15,25 @@ export class BranchTreeViewProvider implements vscode.TreeDataProvider<Branch> {
     constructor( prefix: GitFlowPrefix ) {
         this._prefix = prefix;
     }
-    
+
     getTreeItem(element: Branch): vscode.TreeItem | Thenable<vscode.TreeItem> {
         return element;
     }
     getChildren(element?: Branch | undefined): vscode.ProviderResult<Branch[]> {
         const activeBranch = GitService.activeBranch;
+        const filter = vscode.workspace.getConfiguration("gitflow").get("views.feature.showRemoteBranches");
+        const configPrefix: string = GitService?.flowConfig?.prefixes?.[this._prefix] || this._prefix;
+
         const branches = GitService.branches.filter( ( branch ) => {
-            const filter = vscode.workspace.getConfiguration("gitflow").get("views.feature.showRemoteBranches" );
+          if( filter === true ) {
+            console.log( configPrefix );
+            return ( branch.startsWith( configPrefix ) || branch.startsWith(`remotes/origin/${this._prefix}/`) );
+          }
 
-            const prefix: string = this._prefix;
-            const configPrefix: string = GitService?.flowConfig?.prefixes?.[ prefix ] || prefix;
-
-            if( filter === true ) {
-                console.log( configPrefix );
-                return ( branch.startsWith( configPrefix ) || branch.startsWith(`remotes/origin/${this._prefix}/`) );
-            }
-
-            return branch.startsWith( configPrefix );
+          return branch.startsWith( configPrefix );
         });
 
-        return Promise.resolve( branches.map( ( branch ) => { 
+        return Promise.resolve( branches.map( ( branch ) => {
             const isRemote = branch.startsWith(`remotes/origin/${this._prefix}/`);
 
             return new Branch( branch, branch === activeBranch, this._prefix, isRemote );

@@ -2,11 +2,11 @@ import * as vscode from "vscode";
 import { GitFlowPrefix } from "../services/GitService";
 
 export default class Branch extends vscode.TreeItem {
-    
+
     private _branch: string;
     private _prefix: GitFlowPrefix;
 
-    constructor( 
+    constructor(
         branch: string,
         public readonly active: boolean,
         prefix: GitFlowPrefix = "",
@@ -18,26 +18,20 @@ export default class Branch extends vscode.TreeItem {
         this._prefix = prefix;
 
         this.label = ( this.isRemote ? this._branch.replace(`remotes/origin/${this._prefix}/`, "") : this._branch.replace(`${this._prefix}/`, "") );
+        this.tooltip = `${this._branch} (${ this.isRemote === true ? "remote" : "local"})`;
+        this.description = this.active === true ? "active" : "";
     }
 
     public get branch(): string {
         return this._branch;
     }
 
-    public get branchName(): string {
+    public get branchName(): string | vscode.TreeItemLabel {
         return this.label || "";
     }
 
     public get prefix(): GitFlowPrefix {
         return this._prefix;
-    }
-
-    public get tooltip(): string {
-        return `${this._branch} (${ this.isRemote === true ? "remote" : "local"})`;
-    }
-
-    public get description(): string {
-        return this.active === true ? "active" : "";
     }
 
     iconPath = new vscode.ThemeIcon( this.isRemote === true ? "git-branch" : this.active === true ? "circle-filled" : "circle-outline");
