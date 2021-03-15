@@ -58,15 +58,15 @@ class GitService {
 
         return {
             "branches": {
-                "master": this.getConfig("gitflow.branch.master") || undefined,
-                "develop": this.getConfig("gitflow.branch.develop") || undefined
+                "master": this.getConfig("gitflow.branch.master") ?? undefined,
+                "develop": this.getConfig("gitflow.branch.develop") ?? undefined
             },
             "prefixes": {
-                "feature": this.getConfig("gitflow.prefix.feature") || undefined,
-                "release": this.getConfig("gitflow.prefix.release") || undefined,
-                "hotfix": this.getConfig("gitflow.prefix.hotfix") || undefined,
-                "support": this.getConfig("gitflow.prefix.support") || undefined,
-                "versiontag": this.getConfig("gitflow.prefix.versiontag") || undefined
+                "feature": this.getConfig("gitflow.prefix.feature") ?? undefined,
+                "release": this.getConfig("gitflow.prefix.release") ?? undefined,
+                "hotfix": this.getConfig("gitflow.prefix.hotfix") ?? undefined,
+                "support": this.getConfig("gitflow.prefix.support") ?? undefined,
+                "versiontag": this.getConfig("gitflow.prefix.versiontag") ?? undefined
             }
         };
     }
@@ -150,15 +150,9 @@ class GitService {
 
     public get isInitialized(): boolean {
         const { master, develop } = this.flowConfig.branches;
-        const { feature, hotfix, release, support } = this.flowConfig.prefixes;
-
         return (
             master !== undefined &&
-            develop !== undefined &&
-            feature !== undefined &&
-            hotfix !== undefined &&
-            release !== undefined &&
-            support !== undefined
+            develop !== undefined
         );
     }
 }
